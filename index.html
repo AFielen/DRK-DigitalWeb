@@ -1,0 +1,623 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+  <meta charset="UTF-8"/>
+  <meta name="viewport" content="width=device-width,initial-scale=1.0"/>
+  <title>DRK Digital – Digitalisierungstools für das Rote Kreuz</title>
+  <meta name="description" content="Open-Source-Lösungen für DRK-Kreisverbände. Kostenlos, datenschutzkonform, direkt einsatzbereit."/>
+  <link rel="icon" type="image/svg+xml" href="favicon.svg"/>
+  <style>
+    /* ── DRK Design Tokens (aus NIS2 globals.css) ── */
+    :root {
+      --drk: #e30613;
+      --drk-dark: #b8000f;
+      --drk-light: #ff1a2e;
+      --drk-bg: #fef2f2;
+      --text: #212529;
+      --text-light: #6b7280;
+      --text-muted: #9ca3af;
+      --bg: #f8f9fa;
+      --bg-card: #ffffff;
+      --border: #e5e7eb;
+      --success: #28a745;
+      --success-bg: #f0fdf4;
+      --warning: #ffc107;
+      --warning-bg: #fffbeb;
+      --info: #17a2b8;
+      --info-bg: #eff6ff;
+      --shadow-sm: 0 1px 2px rgba(0,0,0,0.05);
+      --shadow: 0 4px 6px -1px rgba(0,0,0,0.1), 0 2px 4px -2px rgba(0,0,0,0.1);
+      --shadow-lg: 0 10px 15px -3px rgba(0,0,0,0.1), 0 4px 6px -4px rgba(0,0,0,0.1);
+      --radius: 0.75rem;
+      --radius-lg: 1rem;
+      --radius-xl: 1.25rem;
+    }
+
+    /* ── Basis-Styles (NIS2 Pattern) ── */
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    body {
+      font-family: system-ui, -apple-system, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
+      color: var(--text);
+      background: var(--bg);
+      -webkit-font-smoothing: antialiased;
+      -moz-osx-font-smoothing: grayscale;
+      line-height: 1.6;
+    }
+
+    /* ── DRK Box-Karten (NIS2 Pattern) ── */
+    .drk-card {
+      background: var(--bg-card);
+      border-radius: var(--radius-xl);
+      box-shadow: var(--shadow-lg);
+      padding: 1.5rem;
+    }
+    @media (min-width: 768px) { .drk-card { padding: 2rem; } }
+
+    /* ── DRK Buttons (NIS2 Pattern) ── */
+    .drk-btn-primary {
+      background-color: var(--drk);
+      color: white;
+      font-weight: 600;
+      padding: 0.75rem 1.5rem;
+      border-radius: var(--radius);
+      transition: background-color 150ms ease;
+      cursor: pointer;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 0.5rem;
+      min-height: 44px;
+      text-decoration: none;
+      font-size: 0.925rem;
+      border: none;
+    }
+    .drk-btn-primary:hover { background-color: var(--drk-dark); }
+
+    .drk-btn-secondary {
+      background-color: #e9ecef;
+      color: var(--text);
+      font-weight: 600;
+      padding: 0.75rem 1.5rem;
+      border-radius: var(--radius);
+      transition: background-color 150ms ease;
+      cursor: pointer;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 0.5rem;
+      min-height: 44px;
+      text-decoration: none;
+      font-size: 0.925rem;
+      border: none;
+    }
+    .drk-btn-secondary:hover { background-color: #dee2e6; }
+
+    /* ── Animationen (NIS2 Pattern) ── */
+    @keyframes fadeIn {
+      from { opacity: 0; transform: translateY(8px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+    .drk-fade-in { animation: fadeIn 300ms ease-out; }
+
+    @keyframes slideUp {
+      from { opacity: 0; transform: translateY(16px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+    .drk-slide-up { animation: slideUp 400ms ease-out; }
+
+    .fade-up {
+      opacity: 0; transform: translateY(20px);
+      transition: opacity 0.5s ease, transform 0.5s ease;
+    }
+    .fade-up.visible { opacity: 1; transform: translateY(0); }
+
+    /* ── Status-Badges (NIS2 Pattern) ── */
+    .drk-badge-success {
+      background: var(--success-bg); color: var(--success);
+      padding: 0.25rem 0.75rem; border-radius: 9999px;
+      font-size: 0.65rem; font-weight: 700; text-transform: uppercase;
+      letter-spacing: 0.04em;
+    }
+    .drk-badge-warning {
+      background: var(--warning-bg); color: #b45309;
+      padding: 0.25rem 0.75rem; border-radius: 9999px;
+      font-size: 0.65rem; font-weight: 700; text-transform: uppercase;
+      letter-spacing: 0.04em;
+    }
+
+    /* ── Layout-Utilities ── */
+    .container { max-width: 64rem; margin: 0 auto; padding: 0 1rem; }
+    .flex { display: flex; }
+    .flex-col { flex-direction: column; }
+    .items-center { align-items: center; }
+    .justify-center { justify-content: center; }
+    .justify-between { justify-content: space-between; }
+    .gap-1 { gap: 0.25rem; }
+    .gap-2 { gap: 0.5rem; }
+    .gap-3 { gap: 0.75rem; }
+    .gap-4 { gap: 1rem; }
+    .gap-6 { gap: 1.5rem; }
+    .text-center { text-align: center; }
+    .shrink-0 { flex-shrink: 0; }
+    a { color: inherit; }
+
+    /* ── DRK Header (NIS2 Pattern) ── */
+    .drk-header {
+      display: flex; align-items: center; justify-content: space-between;
+      gap: 0.75rem; padding: 0.75rem 1.5rem;
+      background: #e30613; color: #fff;
+    }
+    .drk-header a { text-decoration: none; color: inherit; }
+    .drk-header-logo { display: flex; align-items: center; gap: 0.75rem; }
+    .drk-header-logo img { width: 42px; height: 42px; }
+    .drk-header-title { font-size: 1.4rem; font-weight: 700; line-height: 1.15; }
+    .drk-header-subtitle { font-size: 0.8rem; opacity: 0.85; }
+    .drk-header-actions { display: flex; align-items: center; gap: 0.25rem; }
+    .drk-header-btn {
+      display: flex; align-items: center; justify-content: center;
+      width: 36px; height: 36px; border-radius: 50%;
+      transition: background-color 150ms ease;
+      text-decoration: none; color: inherit;
+    }
+    .drk-header-btn:hover { background: rgba(255,255,255,0.1); }
+
+    /* ── DRK Sub-Nav (NIS2 Pattern) ── */
+    .drk-subnav {
+      display: flex; gap: 1rem; padding: 0.5rem 1.5rem;
+      font-size: 0.875rem; overflow-x: auto;
+      background: #c5050e; color: rgba(255,255,255,0.85);
+    }
+    .drk-subnav a {
+      text-decoration: none; color: inherit;
+      white-space: nowrap;
+    }
+    .drk-subnav a:hover { text-decoration: underline; }
+
+    /* ── DRK Footer (NIS2 Pattern) ── */
+    .drk-footer {
+      text-align: center; padding: 2.5rem 1rem 2rem;
+      margin-top: 2rem; border-top: 1px solid var(--border);
+    }
+    .drk-footer-org {
+      font-size: 0.875rem; font-weight: 700;
+      text-transform: uppercase; letter-spacing: 0.12em;
+      margin-bottom: 0.5rem; color: var(--drk);
+    }
+    .drk-footer-kv {
+      font-size: 0.875rem; margin-bottom: 0.75rem;
+      color: var(--text-light);
+    }
+    .drk-footer-links {
+      font-size: 0.75rem; margin-bottom: 0.75rem;
+      color: var(--text-light);
+    }
+    .drk-footer-links a {
+      text-decoration: none; color: inherit;
+    }
+    .drk-footer-links a:hover { text-decoration: underline; }
+    .drk-footer-heart {
+      font-size: 0.75rem; color: var(--text-light);
+      display: flex; align-items: center; justify-content: center; gap: 0.25rem;
+    }
+
+    /* ── Hero Section ── */
+    .hero { padding: 3rem 0; }
+    .hero-stats {
+      display: flex; gap: 2rem; margin-top: 1.5rem;
+      padding-top: 1.5rem; border-top: 1px solid var(--border);
+    }
+    .hero-stat-number {
+      font-size: 1.75rem; font-weight: 800;
+      color: var(--drk); line-height: 1;
+    }
+    .hero-stat-label {
+      font-size: 0.75rem; color: var(--text-muted);
+      margin-top: 0.25rem; font-weight: 500;
+    }
+
+    /* ── Products Grid ── */
+    .products-grid {
+      display: grid; grid-template-columns: repeat(2, 1fr);
+      gap: 1rem;
+    }
+    @media (max-width: 640px) { .products-grid { grid-template-columns: 1fr; } }
+
+    .product-link {
+      display: flex; align-items: flex-start; gap: 0.75rem;
+      padding: 0.75rem; border-radius: var(--radius);
+      border: 1px solid var(--border);
+      transition: border-color 150ms ease, box-shadow 150ms ease;
+      text-decoration: none; color: inherit;
+    }
+    .product-link:hover {
+      border-color: #d1d5db;
+      box-shadow: var(--shadow);
+    }
+    .product-icon {
+      width: 2.5rem; height: 2.5rem; border-radius: var(--radius);
+      display: flex; align-items: center; justify-content: center;
+      flex-shrink: 0; font-size: 1.1rem;
+    }
+    .product-name { font-size: 0.875rem; font-weight: 600; color: var(--text); }
+    .product-desc { font-size: 0.75rem; margin-top: 0.25rem; color: var(--text-light); }
+
+    /* ── Pillars Grid ── */
+    .pillars-grid {
+      display: grid; grid-template-columns: repeat(3, 1fr);
+      gap: 1rem;
+    }
+    @media (max-width: 768px) { .pillars-grid { grid-template-columns: 1fr; } }
+
+    /* ── Roadmap Grid ── */
+    .roadmap-grid {
+      display: grid; grid-template-columns: repeat(2, 1fr);
+      gap: 1rem;
+    }
+    @media (max-width: 640px) { .roadmap-grid { grid-template-columns: 1fr; } }
+
+    .roadmap-item {
+      display: flex; align-items: flex-start; gap: 0.75rem;
+      padding: 0.75rem; border-radius: var(--radius);
+      border: 1px solid var(--border);
+    }
+    .roadmap-icon {
+      width: 2.5rem; height: 2.5rem; border-radius: var(--radius);
+      display: flex; align-items: center; justify-content: center;
+      flex-shrink: 0; font-size: 1.1rem;
+      background: var(--drk-bg); color: var(--drk);
+    }
+
+    /* ── Featured Product Card ── */
+    .product-featured {
+      background: var(--drk); color: white;
+      border-radius: var(--radius-xl);
+      padding: 1.5rem;
+      box-shadow: var(--shadow-lg);
+    }
+    @media (min-width: 768px) { .product-featured { padding: 2rem; } }
+    .product-featured a { color: white; }
+
+    /* ── Info Box (NIS2 Pattern) ── */
+    .info-box {
+      border-left: 4px solid var(--info);
+      background: var(--info-bg);
+    }
+
+    /* ── Mobile Header Subtitle ── */
+    @media (max-width: 640px) {
+      .drk-header-subtitle-full { display: none; }
+      .drk-header-subtitle-short { display: block; }
+    }
+    @media (min-width: 641px) {
+      .drk-header-subtitle-full { display: block; }
+      .drk-header-subtitle-short { display: none; }
+    }
+  </style>
+</head>
+<body style="min-height:100vh;display:flex;flex-direction:column;">
+
+  <!-- ── DRK Header (NIS2 Pattern) ── -->
+  <header class="drk-header">
+    <a href="/" class="drk-header-logo">
+      <img src="logo.png" alt="DRK Logo" width="42" height="42"/>
+      <div>
+        <div class="drk-header-title">DRK Digital</div>
+        <div class="drk-header-subtitle drk-header-subtitle-full">Digitalisierungstools für DRK-Kreisverbände</div>
+        <div class="drk-header-subtitle drk-header-subtitle-short">Tools für DRK-Verbände</div>
+      </div>
+    </a>
+    <div class="drk-header-actions">
+      <a href="https://github.com/AFielen" target="_blank" rel="noopener" class="drk-header-btn" title="GitHub">
+        <svg width="22" height="22" viewBox="0 0 24 24" fill="currentColor"><path d="M12 0C5.37 0 0 5.37 0 12c0 5.3 3.44 9.8 8.21 11.38.6.11.82-.26.82-.58v-2.03c-3.34.72-4.04-1.61-4.04-1.61-.55-1.38-1.33-1.75-1.33-1.75-1.09-.74.08-.73.08-.73 1.2.09 1.84 1.24 1.84 1.24 1.07 1.83 2.8 1.3 3.49 1 .1-.78.42-1.3.76-1.6-2.66-.3-5.47-1.33-5.47-5.93 0-1.31.47-2.38 1.24-3.22-.12-.3-.54-1.52.12-3.18 0 0 1.01-.32 3.3 1.23a11.5 11.5 0 0 1 3-.4c1.02 0 2.04.14 3 .4 2.28-1.55 3.29-1.23 3.29-1.23.66 1.66.24 2.88.12 3.18.77.84 1.24 1.91 1.24 3.22 0 4.61-2.81 5.63-5.48 5.93.43.37.81 1.1.81 2.22v3.29c0 .32.22.7.83.58C20.57 21.8 24 17.3 24 12c0-6.63-5.37-12-12-12z"/></svg>
+      </a>
+      <a href="mailto:Info@DRK-Aachen.de" class="drk-header-btn" title="Kontakt">
+        <svg xmlns="http://www.w3.org/2000/svg" width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="4" width="20" height="16" rx="2"/><path d="m22 7-8.97 5.7a1.94 1.94 0 0 1-2.06 0L2 7"/></svg>
+      </a>
+    </div>
+  </header>
+
+  <!-- ── Sub-Navigation (NIS2 Pattern) ── -->
+  <nav class="drk-subnav">
+    <a href="#produkte">Produkte</a>
+    <a href="#philosophie">Philosophie</a>
+    <a href="#roadmap">Roadmap</a>
+    <a href="mailto:Info@DRK-Aachen.de">Kontakt</a>
+  </nav>
+
+  <!-- ── Main Content ── -->
+  <main style="flex:1;">
+    <div style="background:var(--bg);" class="hero">
+      <div class="container" style="display:flex;flex-direction:column;gap:1.5rem;">
+
+        <!-- Hero Card -->
+        <div class="drk-card drk-fade-in">
+          <div class="flex gap-4" style="align-items:flex-start;">
+            <div class="shrink-0" style="padding:0.75rem;border-radius:var(--radius-xl);background:var(--drk-bg);color:var(--drk);">
+              <svg xmlns="http://www.w3.org/2000/svg" width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="3" width="20" height="14" rx="2"/><path d="M8 21h8"/><path d="M12 17v4"/><path d="M7 8h2m2 0h4"/><path d="M7 12h8"/></svg>
+            </div>
+            <div>
+              <h2 style="font-size:1.65rem;font-weight:700;margin-bottom:0.5rem;color:var(--text);line-height:1.2;">
+                Digitale Werkzeuge für das Rote Kreuz
+              </h2>
+              <p style="color:var(--text-light);">
+                Praxiserprobte Web-Anwendungen für DRK-Kreisverbände. Kein Server, keine Registrierung — alles läuft im Browser, alles gehört euch. Open Source, kostenlos und DSGVO-konform by Design.
+              </p>
+              <div class="flex gap-3" style="margin-top:1rem;flex-wrap:wrap;">
+                <a href="#produkte" class="drk-btn-primary">
+                  Alle Tools ansehen
+                  <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+                </a>
+                <a href="https://github.com/AFielen" target="_blank" rel="noopener" class="drk-btn-secondary">
+                  <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor"><path d="M12 0C5.37 0 0 5.37 0 12c0 5.3 3.44 9.8 8.21 11.38.6.11.82-.26.82-.58v-2.03c-3.34.72-4.04-1.61-4.04-1.61-.55-1.38-1.33-1.75-1.33-1.75-1.09-.74.08-.73.08-.73 1.2.09 1.84 1.24 1.84 1.24 1.07 1.83 2.8 1.3 3.49 1 .1-.78.42-1.3.76-1.6-2.66-.3-5.47-1.33-5.47-5.93 0-1.31.47-2.38 1.24-3.22-.12-.3-.54-1.52.12-3.18 0 0 1.01-.32 3.3 1.23a11.5 11.5 0 0 1 3-.4c1.02 0 2.04.14 3 .4 2.28-1.55 3.29-1.23 3.29-1.23.66 1.66.24 2.88.12 3.18.77.84 1.24 1.91 1.24 3.22 0 4.61-2.81 5.63-5.48 5.93.43.37.81 1.1.81 2.22v3.29c0 .32.22.7.83.58C20.57 21.8 24 17.3 24 12c0-6.63-5.37-12-12-12z"/></svg>
+                  GitHub
+                </a>
+              </div>
+              <div class="hero-stats">
+                <div>
+                  <div class="hero-stat-number">8+</div>
+                  <div class="hero-stat-label">Tools</div>
+                </div>
+                <div>
+                  <div class="hero-stat-number">100%</div>
+                  <div class="hero-stat-label">Open Source</div>
+                </div>
+                <div>
+                  <div class="hero-stat-number">0 €</div>
+                  <div class="hero-stat-label">Für Verbände</div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Produkte Section -->
+        <div id="produkte" class="drk-card drk-slide-up">
+          <h3 style="font-weight:700;font-size:1.15rem;margin-bottom:0.25rem;color:var(--text);">
+            Unsere Anwendungen
+          </h3>
+          <p style="font-size:0.875rem;margin-bottom:1.25rem;color:var(--text-light);">
+            Jedes Tool entsteht aus echtem Bedarf in der DRK-Praxis. Keine Lizenzgebühren, kein Vendor Lock-in.
+          </p>
+          <div class="products-grid">
+            <!-- Abstimmung -->
+            <a href="https://abstimmung.henryagi.de" target="_blank" rel="noopener" class="product-link">
+              <div class="product-icon" style="background:#fce4ec;color:var(--drk);">🗳️</div>
+              <div>
+                <div class="product-name">
+                  DRK Vereinsabstimmung
+                  <span class="drk-badge-success" style="margin-left:0.5rem;">Live</span>
+                </div>
+                <p class="product-desc">Digitale Abstimmungen für Gremien und Mitgliederversammlungen — anonym, nachvollziehbar und DSGVO-konform.</p>
+              </div>
+            </a>
+            <!-- NIS2-Audit -->
+            <a href="https://nis2.henryagi.de" target="_blank" rel="noopener" class="product-link">
+              <div class="product-icon" style="background:var(--info-bg);color:var(--info);">🔒</div>
+              <div>
+                <div class="product-name">
+                  NIS-2 Audit
+                  <span class="drk-badge-success" style="margin-left:0.5rem;">Live</span>
+                </div>
+                <p class="product-desc">Interaktiver NIS-2-Compliance-Check. 34 Fragen, Kostenrechner, Lieferketten-Check — alles ohne Server.</p>
+              </div>
+            </a>
+            <!-- Visitenkarte -->
+            <a href="https://drk-visitenkarte.de" target="_blank" rel="noopener" class="product-link">
+              <div class="product-icon" style="background:#e8f5e9;color:#2e7d32;">📇</div>
+              <div>
+                <div class="product-name">
+                  DRK Visitenkarte
+                  <span class="drk-badge-success" style="margin-left:0.5rem;">Live</span>
+                </div>
+                <p class="product-desc">Digitale Visitenkarten im DRK-Corporate-Design. QR-Code-basiert, sofort teilbar, kein Druck nötig.</p>
+              </div>
+            </a>
+            <!-- Auskunft / Selbstauskunft -->
+            <a href="https://selbstauskunft.henryagi.de" target="_blank" rel="noopener" class="product-link">
+              <div class="product-icon" style="background:#e8f5e9;color:#2e7d32;">📝</div>
+              <div>
+                <div class="product-name">
+                  DRK Selbstauskunft
+                  <span class="drk-badge-success" style="margin-left:0.5rem;">Live</span>
+                </div>
+                <p class="product-desc">Digitale Selbstauskunft für Ehrenamtliche — serverlos, datenschutzkonform, direkt im Browser.</p>
+              </div>
+            </a>
+            <!-- Kidood -->
+            <a href="mailto:Info@DRK-Aachen.de" class="product-link">
+              <div class="product-icon" style="background:#fff3e0;color:#e65100;">👶</div>
+              <div>
+                <div class="product-name">
+                  Kidood
+                  <span class="drk-badge-warning" style="margin-left:0.5rem;">In Entwicklung</span>
+                </div>
+                <p class="product-desc">Digitale Lösung für Kitas und Jugendarbeit. Verwaltung, Kommunikation und Dokumentation für Teams.</p>
+              </div>
+            </a>
+            <!-- HenryGPT -->
+            <a href="mailto:Info@DRK-Aachen.de" class="product-link">
+              <div class="product-icon" style="background:#e3f2fd;color:#1976d2;">🤖</div>
+              <div>
+                <div class="product-name">
+                  HenryGPT
+                  <span class="drk-badge-warning" style="margin-left:0.5rem;">In Entwicklung</span>
+                </div>
+                <p class="product-desc">Intelligenter KI-Assistent speziell für das DRK — DSGVO-konform in eigener Umgebung.</p>
+              </div>
+            </a>
+          </div>
+        </div>
+
+        <!-- NIS-2 Featured Card -->
+        <div class="product-featured drk-slide-up">
+          <div class="flex gap-4" style="align-items:flex-start;">
+            <div class="shrink-0" style="padding:0.75rem;border-radius:var(--radius-xl);background:rgba(255,255,255,0.15);">
+              <svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/><path d="M9 12l2 2 4-4"/></svg>
+            </div>
+            <div>
+              <h3 style="font-size:1.15rem;font-weight:700;margin-bottom:0.25rem;">NIS-2 Audit — Unser Flaggschiff</h3>
+              <p style="font-size:0.875rem;opacity:0.82;margin-bottom:1rem;">
+                Das umfassendste Open-Source-Tool zur NIS-2-Betroffenheitsanalyse für DRK-Verbände. Self-Check, Kostenrechner, Compliance-Tracker, Management-Briefing und Lieferketten-Prüfung — alles Zero-Data.
+              </p>
+              <a href="https://nis2.henryagi.de" target="_blank" rel="noopener" class="drk-btn-secondary" style="background:white;color:var(--drk);">
+                NIS-2 Audit starten
+                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+              </a>
+            </div>
+          </div>
+        </div>
+
+        <!-- Philosophie Section -->
+        <div id="philosophie" class="drk-card fade-up" style="border-left:4px solid var(--drk);">
+          <h3 style="font-weight:700;font-size:1.15rem;margin-bottom:0.25rem;color:var(--text);">
+            Unsere Haltung
+          </h3>
+          <p style="font-size:0.875rem;margin-bottom:1.25rem;color:var(--text-light);">
+            Digital ohne Kompromisse beim Datenschutz — alle Daten verbleiben auf dem Gerät.
+          </p>
+          <div class="pillars-grid">
+            <div class="drk-card" style="box-shadow:var(--shadow-sm);text-align:center;">
+              <div style="color:var(--drk);display:flex;justify-content:center;margin-bottom:0.75rem;">
+                <svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
+              </div>
+              <div style="font-weight:700;margin-bottom:0.25rem;color:var(--text);">Zero-Data</div>
+              <p style="font-size:0.8rem;color:var(--text-light);">Kein Server, keine Datenbank, keine Cloud. Alle Daten bleiben im Browser.</p>
+            </div>
+            <div class="drk-card" style="box-shadow:var(--shadow-sm);text-align:center;">
+              <div style="color:var(--drk);display:flex;justify-content:center;margin-bottom:0.75rem;">
+                <svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="11" width="18" height="11" rx="2" ry="2"/><path d="M7 11V7a5 5 0 0 1 10 0v4"/></svg>
+              </div>
+              <div style="font-weight:700;margin-bottom:0.25rem;color:var(--text);">Open Source</div>
+              <p style="font-size:0.8rem;color:var(--text-light);">Alle Tools quelloffen auf GitHub. Jeder Verband kann hosten und anpassen.</p>
+            </div>
+            <div class="drk-card" style="box-shadow:var(--shadow-sm);text-align:center;">
+              <div style="color:var(--drk);display:flex;justify-content:center;margin-bottom:0.75rem;">
+                <svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"/></svg>
+              </div>
+              <div style="font-weight:700;margin-bottom:0.25rem;color:var(--text);">Sofort nutzbar</div>
+              <p style="font-size:0.8rem;color:var(--text-light);">Keine Installation, keine Registrierung. Browser öffnen und loslegen.</p>
+            </div>
+          </div>
+        </div>
+
+        <!-- Info Box -->
+        <div class="drk-card info-box fade-up">
+          <div style="display:flex;flex-direction:column;gap:0.5rem;">
+            <div class="flex gap-2 items-center" style="font-size:0.875rem;font-weight:600;color:var(--text);">
+              <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="11" width="18" height="11" rx="2" ry="2"/><path d="M7 11V7a5 5 0 0 1 10 0v4"/></svg>
+              DSGVO-konform by Design
+            </div>
+            <p style="font-size:0.875rem;color:var(--text-light);">
+              Keine Cookies, keine externen Tracking-Dienste, keine US-Cloud-Anbieter. Alle Tools laufen nach dem
+              <strong>DRK Goldstandard</strong> — Hosting bei Hetzner (Deutschland), Fonts lokal, Daten im Browser.
+            </p>
+          </div>
+        </div>
+
+        <!-- Roadmap Section -->
+        <div id="roadmap" class="drk-card fade-up">
+          <h3 style="font-weight:700;font-size:1.15rem;margin-bottom:0.25rem;color:var(--text);">
+            In Vorbereitung
+          </h3>
+          <p style="font-size:0.875rem;margin-bottom:1.25rem;color:var(--text-light);">
+            Die nächste Generation DRK-Digitaltools ist in aktiver Entwicklung.
+          </p>
+          <div class="roadmap-grid">
+            <div class="roadmap-item">
+              <div class="roadmap-icon">📄</div>
+              <div>
+                <div style="font-size:0.875rem;font-weight:600;color:var(--text);">
+                  Briefbogen
+                  <span class="drk-badge-warning" style="margin-left:0.5rem;">Bald</span>
+                </div>
+                <p style="font-size:0.75rem;margin-top:0.25rem;color:var(--text-light);">Automatisierter DRK-Briefbogen-Generator. Korrekte CI, richtige Absenderfelder.</p>
+              </div>
+            </div>
+            <div class="roadmap-item">
+              <div class="roadmap-icon">🔑</div>
+              <div>
+                <div style="font-size:0.875rem;font-weight:600;color:var(--text);">
+                  Team Kennwort
+                  <span class="drk-badge-warning" style="margin-left:0.5rem;">In Entwicklung</span>
+                </div>
+                <p style="font-size:0.75rem;margin-top:0.25rem;color:var(--text-light);">Sicheres Passwort-Management für Teams. Kein externer Anbieter, keine Cloud.</p>
+              </div>
+            </div>
+            <div class="roadmap-item">
+              <div class="roadmap-icon">🗂️</div>
+              <div>
+                <div style="font-size:0.875rem;font-weight:600;color:var(--text);">
+                  AutoDMS
+                  <span class="drk-badge-warning" style="margin-left:0.5rem;">Geplant</span>
+                </div>
+                <p style="font-size:0.75rem;margin-top:0.25rem;color:var(--text-light);">Automatisiertes Dokumenten-Management ohne teure DMS-Software.</p>
+              </div>
+            </div>
+            <div class="roadmap-item">
+              <div class="roadmap-icon">✍️</div>
+              <div>
+                <div style="font-size:0.875rem;font-weight:600;color:var(--text);">
+                  DRK-Signatur
+                  <span class="drk-badge-warning" style="margin-left:0.5rem;">Geplant</span>
+                </div>
+                <p style="font-size:0.75rem;margin-top:0.25rem;color:var(--text-light);">E-Mail-Signatur-Generator im einheitlichen DRK-Corporate-Design.</p>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- CTA Card -->
+        <div class="drk-card fade-up" style="text-align:center;">
+          <h3 style="font-weight:700;font-size:1.15rem;margin-bottom:0.5rem;color:var(--text);">
+            Gemeinsam digitaler werden
+          </h3>
+          <p style="font-size:0.875rem;color:var(--text-light);max-width:32rem;margin:0 auto 1.25rem;">
+            Habt ihr einen Bedarf im Verband ohne passendes Tool? Wollt ihr beitragen? Meldet euch.
+          </p>
+          <div class="flex gap-3 justify-center" style="flex-wrap:wrap;">
+            <a href="mailto:Info@DRK-Aachen.de" class="drk-btn-primary">
+              <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="4" width="20" height="16" rx="2"/><path d="m22 7-8.97 5.7a1.94 1.94 0 0 1-2.06 0L2 7"/></svg>
+              Kontakt aufnehmen
+            </a>
+            <a href="https://github.com/AFielen/drk-app-template" target="_blank" rel="noopener" class="drk-btn-secondary">
+              App-Template auf GitHub
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+            </a>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </main>
+
+  <!-- ── DRK Footer (NIS2 Pattern) ── -->
+  <footer class="drk-footer">
+    <div class="drk-footer-org">Deutsches Rotes Kreuz</div>
+    <div class="drk-footer-kv">Kreisverband StädteRegion Aachen e.V.</div>
+    <div class="drk-footer-links">
+      <a href="impressum.html">Impressum</a> · 
+      <a href="datenschutz.html">Datenschutz</a> · 
+      <a href="mailto:Info@DRK-Aachen.de">Kontakt</a>
+    </div>
+    <div class="drk-footer-heart">
+      made with
+      <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="#e30613" stroke="#e30613" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"/></svg>
+      for
+      <svg width="14" height="14" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M9 2h6v7h7v6h-7v7H9v-7H2V9h7V2z" fill="#e30613"/></svg>
+    </div>
+  </footer>
+
+  <script>
+    // Intersection Observer for fade-up animations
+    const obs = new IntersectionObserver(entries => {
+      entries.forEach(e => {
+        if (e.isIntersecting) {
+          e.target.classList.add('visible');
+          obs.unobserve(e.target);
+        }
+      });
+    }, { threshold: 0.1 });
+    document.querySelectorAll('.fade-up').forEach(el => obs.observe(el));
+  </script>
+</body>
+</html>
