@@ -6,6 +6,27 @@
   <title>Datenschutzerklärung – DRK Digital</title>
   <meta name="description" content="Datenschutzerklärung der DRK Digital Plattform – Zero-Data-Philosophie, keine Cookies, DSGVO-konform."/>
   <link rel="icon" type="image/svg+xml" href="favicon.svg"/>
+
+  <!-- SEO / Canonical -->
+  <link rel="canonical" href="https://drk-digital.io/datenschutz.html"/>
+  <meta name="theme-color" content="#e30613"/>
+  <meta name="robots" content="index,follow"/>
+
+  <!-- Open Graph -->
+  <meta property="og:type" content="website"/>
+  <meta property="og:site_name" content="DRK Digital"/>
+  <meta property="og:locale" content="de_DE"/>
+  <meta property="og:title" content="Datenschutzerklärung – DRK Digital"/>
+  <meta property="og:description" content="Datenschutzerklärung der DRK Digital Plattform – Zero-Data-Philosophie, keine Cookies, DSGVO-konform."/>
+  <meta property="og:url" content="https://drk-digital.io/datenschutz.html"/>
+  <meta property="og:image" content="https://drk-digital.io/logo.png"/>
+  <meta property="og:image:alt" content="DRK Digital – Digitalisierungstools für das Rote Kreuz"/>
+
+  <!-- Twitter Card -->
+  <meta name="twitter:card" content="summary"/>
+  <meta name="twitter:title" content="Datenschutzerklärung – DRK Digital"/>
+  <meta name="twitter:description" content="Datenschutzerklärung der DRK Digital Plattform – Zero-Data-Philosophie, keine Cookies, DSGVO-konform."/>
+  <meta name="twitter:image" content="https://drk-digital.io/logo.png"/>
   <style>
     :root {
       --drk: #e30613; --drk-dark: #b8000f; --drk-bg: #fef2f2;
@@ -53,7 +74,7 @@
 
     /* Content */
     .content-section { margin-bottom: 1.5rem; }
-    .content-section h3 { font-weight: 700; margin-bottom: 0.5rem; color: var(--text); }
+    .content-section h2 { font-weight: 700; font-size: 1.05rem; margin-bottom: 0.5rem; color: var(--text); }
     .content-section p, .content-section ul { color: var(--text-light); }
     .content-section a { color: var(--drk); text-decoration: none; }
     .content-section a:hover { text-decoration: underline; }
@@ -67,9 +88,36 @@
       border-radius: 0 0.75rem 0.75rem 0;
       margin-bottom: 1.5rem;
     }
+
+    /* Skip-Link (Accessibility) */
+    .skip-link {
+      position: absolute; left: -9999px; top: 0;
+      background: var(--drk); color: #fff;
+      padding: 0.75rem 1.25rem; z-index: 1000;
+      text-decoration: none; font-weight: 600;
+      border-radius: 0 0 0.75rem 0;
+    }
+    .skip-link:focus {
+      left: 0;
+      outline: 3px solid #fff;
+      outline-offset: -3px;
+    }
+
+    /* Focus-Visible Styles (Accessibility) */
+    a:focus-visible, button:focus-visible {
+      outline: 3px solid var(--drk);
+      outline-offset: 2px;
+      border-radius: 2px;
+    }
+    .drk-header a:focus-visible {
+      outline: 3px solid #fff;
+      outline-offset: 2px;
+    }
   </style>
 </head>
 <body>
+  <a href="#main" class="skip-link">Zum Inhalt springen</a>
+
   <header class="drk-header">
     <a href="/" class="drk-header-logo">
       <img src="logo.png" alt="DRK Logo" width="42" height="42"/>
@@ -80,10 +128,10 @@
     </a>
   </header>
 
-  <main style="flex:1;padding:2rem 1rem;">
+  <main id="main" style="flex:1;padding:2rem 1rem;">
     <div style="max-width:64rem;margin:0 auto;">
       <div class="drk-card">
-        <h2 style="font-size:1.5rem;font-weight:700;margin-bottom:1.5rem;color:var(--text);">Datenschutzerklärung</h2>
+        <h1 style="font-size:1.5rem;font-weight:700;margin-bottom:1.5rem;color:var(--text);">Datenschutzerklärung</h1>
 
         <div class="info-box">
           <p style="font-size:0.875rem;font-weight:600;color:var(--text);margin-bottom:0.25rem;">
@@ -95,7 +143,7 @@
         </div>
 
         <div class="content-section">
-          <h3>1. Verantwortlicher</h3>
+          <h2>1. Verantwortlicher</h2>
           <p>
             DRK-Kreisverband Städteregion Aachen e.V.<br/>
             Axel Fielen, Vorsitzender des Vorstands<br/>
@@ -106,7 +154,7 @@
         </div>
 
         <div class="content-section">
-          <h3>2. Hosting</h3>
+          <h2>2. Hosting</h2>
           <p>
             Diese Website wird bei <strong>Hetzner Online GmbH</strong> (Industriestr. 25, 91710 Gunzenhausen, Deutschland) gehostet. Hetzner betreibt Rechenzentren ausschließlich in Deutschland und unterliegt vollständig der DSGVO.
           </p>
@@ -119,19 +167,19 @@
         </div>
 
         <div class="content-section">
-          <h3>3. Domain-Registrar</h3>
+          <h2>3. Domain-Registrar</h2>
           <p>
             Die Domain wird über <strong>Checkdomain</strong> (dogado GmbH, Saarlandstraße 25, 44139 Dortmund) registriert. DNS-Dienste werden über <strong>Hetzner DNS</strong> bereitgestellt. Beide Anbieter haben ihren Sitz in Deutschland.
           </p>
         </div>
 
         <div class="content-section">
-          <h3>4. Keine Cookies</h3>
+          <h2>4. Keine Cookies</h2>
           <p>Diese Website verwendet keine Cookies — weder technisch notwendige noch analytische oder Marketing-Cookies.</p>
         </div>
 
         <div class="content-section">
-          <h3>5. Keine externen Dienste</h3>
+          <h2>5. Keine externen Dienste</h2>
           <p>Diese Website lädt keine externen Ressourcen nach:</p>
           <ul>
             <li>Keine Google Fonts oder andere externe Schriftarten</li>
@@ -146,14 +194,14 @@
         </div>
 
         <div class="content-section">
-          <h3>6. Externe Links</h3>
+          <h2>6. Externe Links</h2>
           <p>
             Diese Website enthält Links zu externen Websites, insbesondere zu GitHub (<a href="https://github.com/DRKAachen" target="_blank" rel="noopener">github.com/DRKAachen</a>) und zu den einzelnen DRK-Digitaltools. Für die Datenschutzpraktiken dieser externen Seiten sind deren jeweilige Betreiber verantwortlich. Beim Klick auf einen externen Link verlassen Sie den Verantwortungsbereich dieser Website.
           </p>
         </div>
 
         <div class="content-section">
-          <h3>7. Ihre Rechte</h3>
+          <h2>7. Ihre Rechte</h2>
           <p>Sie haben gegenüber uns folgende Rechte hinsichtlich Ihrer personenbezogenen Daten:</p>
           <ul>
             <li>Recht auf Auskunft (Art. 15 DSGVO)</li>
@@ -164,12 +212,12 @@
             <li>Recht auf Datenübertragbarkeit (Art. 20 DSGVO)</li>
           </ul>
           <p style="margin-top:0.5rem;">
-            Da diese Website keine personenbezogenen Daten erhebt oder speichert (außer den technisch unvermeidbaren Server-Logs beim Hosting-Anbieter), fallen diese Rechte praktisch nicht an. Sie können sich dennoch jederzeit an uns wenden.
+            Da diese Website keine personenbezogenen Daten erhebt oder speichert (außer den technisch unvermeidbaren Server-Logs beim Hosting-Anbieter), fallen diese Rechte mangels Datenverarbeitung in der Regel nicht an. Auskunft und Widerspruch können Sie dennoch jederzeit bei uns geltend machen.
           </p>
         </div>
 
         <div class="content-section">
-          <h3>8. Aufsichtsbehörde</h3>
+          <h2>8. Aufsichtsbehörde</h2>
           <p>
             Sie haben das Recht, sich bei einer Datenschutz-Aufsichtsbehörde über unsere Verarbeitung personenbezogener Daten zu beschweren. Die zuständige Aufsichtsbehörde ist:
           </p>
@@ -181,7 +229,7 @@
         </div>
 
         <div class="content-section" style="margin-bottom:0;">
-          <h3>9. Aktualität</h3>
+          <h2>9. Aktualität</h2>
           <p>
             Diese Datenschutzerklärung ist aktuell gültig. Durch die Weiterentwicklung unserer Website oder aufgrund geänderter gesetzlicher Vorgaben kann eine Anpassung dieser Datenschutzerklärung erforderlich werden.
           </p>
