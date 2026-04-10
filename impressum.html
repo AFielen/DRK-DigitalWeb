@@ -6,6 +6,27 @@
   <title>Impressum – DRK Digital</title>
   <meta name="description" content="Impressum des DRK-Kreisverband Städteregion Aachen e.V. – DRK Digital."/>
   <link rel="icon" type="image/svg+xml" href="favicon.svg"/>
+
+  <!-- SEO / Canonical -->
+  <link rel="canonical" href="https://drk-digital.io/impressum.html"/>
+  <meta name="theme-color" content="#e30613"/>
+  <meta name="robots" content="index,follow"/>
+
+  <!-- Open Graph -->
+  <meta property="og:type" content="website"/>
+  <meta property="og:site_name" content="DRK Digital"/>
+  <meta property="og:locale" content="de_DE"/>
+  <meta property="og:title" content="Impressum – DRK Digital"/>
+  <meta property="og:description" content="Impressum des DRK-Kreisverband Städteregion Aachen e.V. – DRK Digital."/>
+  <meta property="og:url" content="https://drk-digital.io/impressum.html"/>
+  <meta property="og:image" content="https://drk-digital.io/logo.png"/>
+  <meta property="og:image:alt" content="DRK Digital – Digitalisierungstools für das Rote Kreuz"/>
+
+  <!-- Twitter Card -->
+  <meta name="twitter:card" content="summary"/>
+  <meta name="twitter:title" content="Impressum – DRK Digital"/>
+  <meta name="twitter:description" content="Impressum des DRK-Kreisverband Städteregion Aachen e.V. – DRK Digital."/>
+  <meta name="twitter:image" content="https://drk-digital.io/logo.png"/>
   <style>
     :root {
       --drk: #e30613; --drk-dark: #b8000f; --drk-bg: #fef2f2;
@@ -52,13 +73,40 @@
 
     /* Content */
     .content-section { margin-bottom: 1.5rem; }
-    .content-section h3 { font-weight: 700; margin-bottom: 0.5rem; color: var(--text); }
+    .content-section h2 { font-weight: 700; font-size: 1.05rem; margin-bottom: 0.5rem; color: var(--text); }
     .content-section p { color: var(--text-light); }
     .content-section a { color: var(--drk); text-decoration: none; }
     .content-section a:hover { text-decoration: underline; }
+
+    /* Skip-Link (Accessibility) */
+    .skip-link {
+      position: absolute; left: -9999px; top: 0;
+      background: var(--drk); color: #fff;
+      padding: 0.75rem 1.25rem; z-index: 1000;
+      text-decoration: none; font-weight: 600;
+      border-radius: 0 0 0.75rem 0;
+    }
+    .skip-link:focus {
+      left: 0;
+      outline: 3px solid #fff;
+      outline-offset: -3px;
+    }
+
+    /* Focus-Visible Styles (Accessibility) */
+    a:focus-visible, button:focus-visible {
+      outline: 3px solid var(--drk);
+      outline-offset: 2px;
+      border-radius: 2px;
+    }
+    .drk-header a:focus-visible {
+      outline: 3px solid #fff;
+      outline-offset: 2px;
+    }
   </style>
 </head>
 <body>
+  <a href="#main" class="skip-link">Zum Inhalt springen</a>
+
   <header class="drk-header">
     <a href="/" class="drk-header-logo">
       <img src="logo.png" alt="DRK Logo" width="42" height="42"/>
@@ -69,13 +117,13 @@
     </a>
   </header>
 
-  <main style="flex:1;padding:2rem 1rem;">
+  <main id="main" style="flex:1;padding:2rem 1rem;">
     <div style="max-width:64rem;margin:0 auto;">
       <div class="drk-card">
-        <h2 style="font-size:1.5rem;font-weight:700;margin-bottom:1.5rem;color:var(--text);">Impressum</h2>
+        <h1 style="font-size:1.5rem;font-weight:700;margin-bottom:1.5rem;color:var(--text);">Impressum</h1>
 
         <div class="content-section">
-          <h3>Angaben gemäß § 5 TMG</h3>
+          <h2>Angaben gemäß § 5 TMG</h2>
           <p>
             DRK-Kreisverband Städteregion Aachen e.V.<br/>
             Henry-Dunant-Platz 1<br/>
@@ -84,12 +132,12 @@
         </div>
 
         <div class="content-section">
-          <h3>Vertreten durch</h3>
+          <h2>Vertreten durch</h2>
           <p>Axel Fielen, Vorsitzender des Vorstands</p>
         </div>
 
         <div class="content-section">
-          <h3>Kontakt</h3>
+          <h2>Kontakt</h2>
           <p>
             Telefon: 02405 6039100<br/>
             E-Mail: <a href="mailto:Info@DRK-Aachen.de">Info@DRK-Aachen.de</a><br/>
@@ -98,7 +146,7 @@
         </div>
 
         <div class="content-section">
-          <h3>Registereintrag</h3>
+          <h2>Registereintrag</h2>
           <p>
             Registergericht: Amtsgericht Aachen<br/>
             Registernummer: VR 4535
@@ -106,7 +154,7 @@
         </div>
 
         <div class="content-section">
-          <h3>Umsatzsteuer-ID</h3>
+          <h2>Umsatzsteuer-ID</h2>
           <p>
             Umsatzsteuer-Identifikationsnummer gemäß § 27 a Umsatzsteuergesetz:<br/>
             DE121729631
@@ -114,7 +162,7 @@
         </div>
 
         <div class="content-section">
-          <h3>Verantwortlich für den Inhalt nach § 55 Abs. 2 RStV</h3>
+          <h2>Verantwortlich für den Inhalt nach § 18 Abs. 2 MStV</h2>
           <p>
             Axel Fielen<br/>
             DRK-Kreisverband Städteregion Aachen e.V.<br/>
@@ -124,21 +172,21 @@
         </div>
 
         <div class="content-section">
-          <h3>Haftungsausschluss</h3>
+          <h2>Haftungsausschluss</h2>
           <p>
             Die Inhalte unserer Seiten wurden mit größter Sorgfalt erstellt. Für die Richtigkeit, Vollständigkeit und Aktualität der Inhalte können wir jedoch keine Gewähr übernehmen. Als Diensteanbieter sind wir gemäß § 7 Abs. 1 TMG für eigene Inhalte auf diesen Seiten nach den allgemeinen Gesetzen verantwortlich. Nach §§ 8 bis 10 TMG sind wir als Diensteanbieter jedoch nicht verpflichtet, übermittelte oder gespeicherte fremde Informationen zu überwachen.
           </p>
         </div>
 
         <div class="content-section">
-          <h3>Urheberrecht</h3>
+          <h2>Urheberrecht</h2>
           <p>
             Die durch die Seitenbetreiber erstellten Inhalte und Werke auf diesen Seiten unterliegen dem deutschen Urheberrecht. Die Vervielfältigung, Bearbeitung, Verbreitung und jede Art der Verwertung außerhalb der Grenzen des Urheberrechtes bedürfen der schriftlichen Zustimmung des jeweiligen Autors bzw. Erstellers.
           </p>
         </div>
 
         <div class="content-section" style="margin-bottom:0;">
-          <h3>Markenhinweis</h3>
+          <h2>Markenhinweis</h2>
           <p>
             Das Rote Kreuz und die Bezeichnung „Deutsches Rotes Kreuz" sind eingetragene Warenzeichen des Deutschen Roten Kreuzes e.V. und unterliegen dem besonderen Schutz der Genfer Abkommen.
           </p>
