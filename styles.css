@@ -25,22 +25,23 @@
   --drk-blue-glow-strong: rgba(0, 45, 85, 0.25);
 
   /* Surfaces */
-  --bg: #fafafa;
-  --bg-warm: #f5f9ff;
+  --bg: #f7f5f2;
+  --bg-warm: #f3efe9;
   --surface: #ffffff;
   --surface-hover: #fefefe;
-  --surface-muted: #f5f3f0;
+  --surface-muted: #f0ece6;
 
   /* Text */
-  --text: #1a1a1a;
-  --text-secondary: #555555;
-  --text-muted: #888888;
-  --text-faint: #b0b0b0;
+  --text: #1c1917;
+  --text-secondary: #57534e;
+  --text-muted: #78716c;
+  --text-faint: #a8a29e;
 
   /* Borders */
-  --border: #e8e5e1;
-  --border-light: #f0eeeb;
-  --border-hover: #d5d0ca;
+  --border: #e7e5e4;
+  --border-light: #f5f5f4;
+  --border-hover: #d6d3d1;
+  --accent-warm: #b91c1c;
 
   /* Status */
   --success: #16a34a;
