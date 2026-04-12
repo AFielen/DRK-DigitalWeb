@@ -414,15 +414,18 @@ a:focus-visible, button:focus-visible {
   max-width: 52rem;
 }
 .content-card h1 {
-  font-size: var(--text-xl); font-weight: 800;
-  color: var(--text); margin-bottom: var(--space-8);
-  letter-spacing: -0.02em; line-height: 1.15;
+  font-family: var(--font-display);
+  font-size: clamp(1.75rem, 1.5rem + 1.25vw, 2.5rem);
+  font-weight: 400;
+  color: var(--text); margin-bottom: 2rem;
+  letter-spacing: -0.01em; line-height: 1.15;
 }
 .content-section { margin-bottom: var(--space-6); }
 .content-section:last-child { margin-bottom: 0; }
 .content-section h2 {
-  font-size: var(--text-lg); font-weight: 700;
-  color: var(--drk-blue); margin-bottom: var(--space-3);
+  font-family: var(--font-display);
+  font-size: 1.25rem; font-weight: 400;
+  color: var(--drk-blue); margin-bottom: 0.75rem;
   letter-spacing: -0.01em;
 }
 .content-section p {
