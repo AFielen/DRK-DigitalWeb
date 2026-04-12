@@ -737,8 +737,9 @@
        ═══════════════════════════════════════════ */
     .fade-up {
       opacity: 0;
-      transform: translateY(24px);
-      transition: opacity 0.6s var(--ease-out), transform 0.6s var(--ease-out);
+      transform: translateY(32px);
+      transition: opacity 0.7s cubic-bezier(0.16, 1, 0.3, 1),
+                  transform 0.7s cubic-bezier(0.16, 1, 0.3, 1);
     }
     .fade-up.visible {
       opacity: 1;
@@ -746,14 +747,21 @@
     }
     /* Staggered children */
     .stagger > .fade-up:nth-child(1) { transition-delay: 0ms; }
-    .stagger > .fade-up:nth-child(2) { transition-delay: 60ms; }
-    .stagger > .fade-up:nth-child(3) { transition-delay: 120ms; }
-    .stagger > .fade-up:nth-child(4) { transition-delay: 180ms; }
-    .stagger > .fade-up:nth-child(5) { transition-delay: 240ms; }
-    .stagger > .fade-up:nth-child(6) { transition-delay: 300ms; }
-    .stagger > .fade-up:nth-child(7) { transition-delay: 360ms; }
-    .stagger > .fade-up:nth-child(8) { transition-delay: 420ms; }
-    .stagger > .fade-up:nth-child(9) { transition-delay: 480ms; }
+    .stagger > .fade-up:nth-child(2) { transition-delay: 80ms; }
+    .stagger > .fade-up:nth-child(3) { transition-delay: 160ms; }
+    .stagger > .fade-up:nth-child(4) { transition-delay: 240ms; }
+    .stagger > .fade-up:nth-child(5) { transition-delay: 320ms; }
+    .stagger > .fade-up:nth-child(6) { transition-delay: 400ms; }
+
+    /* Hero clip-path reveal */
+    @keyframes revealUp {
+      from { clip-path: inset(100% 0 0 0); transform: translateY(20px); }
+      to { clip-path: inset(0 0 0 0); transform: translateY(0); }
+    }
+    .hero h1 { animation: revealUp 0.8s cubic-bezier(0.16, 1, 0.3, 1) 0.2s both; }
+    .hero-description { animation: revealUp 0.8s cubic-bezier(0.16, 1, 0.3, 1) 0.35s both; }
+    .hero-actions { animation: revealUp 0.8s cubic-bezier(0.16, 1, 0.3, 1) 0.5s both; }
+    .hero-stats { animation: revealUp 0.8s cubic-bezier(0.16, 1, 0.3, 1) 0.65s both; }
 
     /* Counter animation */
     @keyframes countUp { from { opacity: 0; transform: translateY(8px); } to { opacity: 1; transform: translateY(0); } }
