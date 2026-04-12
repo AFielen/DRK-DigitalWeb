@@ -591,32 +591,31 @@
     }
 
     .pillar-card {
-      padding: var(--space-8);
+      padding: 2rem;
       background: var(--surface);
-      border: 1px solid var(--border-light);
-      border-radius: var(--radius-xl);
-      transition: all var(--transition-base);
+      border: 1px solid var(--border);
+      border-radius: 0.75rem;
+      transition: all 250ms ease;
     }
     .pillar-card:hover {
       border-color: var(--border-hover);
       box-shadow: var(--shadow-md);
     }
-    .pillar-icon {
-      width: 3rem;
-      height: 3rem;
-      border-radius: var(--radius-lg);
-      background: linear-gradient(135deg, var(--drk-blue-light), #d6e8f8);
-      color: var(--drk-blue);
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      margin-bottom: var(--space-5);
+    .pillar-number {
+      font-family: var(--font-display);
+      font-size: 3rem;
+      font-style: italic;
+      color: var(--drk);
+      opacity: 0.2;
+      line-height: 1;
+      margin-bottom: 1rem;
     }
     .pillar-title {
-      font-size: var(--text-sm);
-      font-weight: 700;
+      font-family: var(--font-display);
+      font-size: 1.25rem;
+      font-weight: 400;
       color: var(--text);
-      margin-bottom: var(--space-2);
+      margin-bottom: 0.5rem;
     }
     .pillar-text {
       font-size: var(--text-xs);
@@ -627,48 +626,48 @@
     /* ═══════════════════════════════════════════
        ROADMAP
        ═══════════════════════════════════════════ */
-    .roadmap-grid {
-      display: grid;
-      grid-template-columns: repeat(2, 1fr);
-      gap: var(--space-4);
+    .roadmap-timeline {
+      position: relative;
+      padding-left: 2rem;
+      max-width: 40rem;
     }
-    @media (max-width: 580px) {
-      .roadmap-grid { grid-template-columns: 1fr; }
+    .roadmap-timeline::before {
+      content: '';
+      position: absolute;
+      left: 0;
+      top: 0;
+      bottom: 0;
+      width: 2px;
+      background: linear-gradient(180deg, var(--drk) 0%, var(--border) 100%);
     }
-
-    .roadmap-card {
-      display: flex;
-      align-items: flex-start;
-      gap: var(--space-4);
-      padding: var(--space-5);
+    .roadmap-item {
+      position: relative;
+      padding-bottom: 2rem;
+      padding-left: 2rem;
+    }
+    .roadmap-item::before {
+      content: '';
+      position: absolute;
+      left: -2rem;
+      top: 0.5rem;
+      width: 10px;
+      height: 10px;
+      border-radius: 50%;
       background: var(--surface);
-      border: 1px dashed var(--border);
-      border-radius: var(--radius-lg);
-      opacity: 0.85;
-      transition: all var(--transition-base);
+      border: 2px solid var(--drk);
+      transform: translateX(-4px);
     }
-    .roadmap-card:hover {
-      opacity: 1;
-      border-style: solid;
-      border-color: var(--border-hover);
-      box-shadow: var(--shadow-sm);
-    }
-    .roadmap-icon {
-      width: 2.5rem;
-      height: 2.5rem;
-      border-radius: var(--radius-md);
-      background: var(--drk-blue-light);
-      color: var(--drk-blue);
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      flex-shrink: 0;
-    }
+    .roadmap-item:last-child { padding-bottom: 0; }
     .roadmap-name {
-      font-size: var(--text-sm);
-      font-weight: 600;
+      font-family: var(--font-display);
+      font-size: 1.125rem;
+      font-weight: 400;
       color: var(--text);
       margin-bottom: var(--space-1);
+      display: flex;
+      align-items: center;
+      gap: var(--space-2);
+      flex-wrap: wrap;
     }
     .roadmap-desc {
       font-size: var(--text-xs);
@@ -684,24 +683,47 @@
       padding: clamp(var(--space-12), 8vw, var(--space-20)) 0;
     }
     .cta-card {
-      padding: clamp(var(--space-10), 6vw, var(--space-16));
-      background: var(--surface);
-      border: 1px solid var(--border-light);
-      border-radius: var(--radius-2xl);
-      box-shadow: var(--shadow-md);
+      padding: clamp(3rem, 6vw, 5rem);
+      background: var(--drk-blue);
+      color: #fff;
+      border-radius: 1rem;
+      text-align: center;
+      border: none;
+      box-shadow: none;
     }
     .cta-title {
-      font-size: var(--text-xl);
-      font-weight: 700;
+      font-family: var(--font-display);
+      font-size: clamp(1.75rem, 1.5rem + 1.25vw, 2.5rem);
+      font-weight: 400;
+      margin-bottom: 1rem;
       letter-spacing: -0.02em;
-      color: var(--text);
-      margin-bottom: var(--space-3);
+      color: #fff;
     }
     .cta-text {
       font-size: var(--text-base);
-      color: var(--text-secondary);
-      margin: 0 auto var(--space-8);
+      color: rgba(255,255,255,0.7);
+      margin: 0 auto 2rem;
       max-width: 32rem;
+    }
+    .cta-card .btn-drk {
+      background: #fff;
+      color: var(--drk-blue);
+      box-shadow: 0 1px 3px rgba(0,0,0,0.1);
+    }
+    .cta-card .btn-drk:hover {
+      background: #f0f0f0;
+      box-shadow: 0 4px 12px rgba(0,0,0,0.15);
+      transform: translateY(-2px);
+    }
+    .cta-card .btn-outline {
+      background: transparent;
+      color: rgba(255,255,255,0.8);
+      border: 1px solid rgba(255,255,255,0.2);
+    }
+    .cta-card .btn-outline:hover {
+      background: rgba(255,255,255,0.1);
+      border-color: rgba(255,255,255,0.3);
+      color: #fff;
     }
     .cta-actions {
       display: flex;
@@ -1040,23 +1062,17 @@
 
         <div class="pillars-grid stagger">
           <div class="pillar-card fade-up">
-            <div class="pillar-icon">
-              <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
-            </div>
+            <div class="pillar-number">01</div>
             <div class="pillar-title">Zero-Data &amp; DSGVO</div>
             <p class="pillar-text">Fast alle Tools arbeiten ohne Server und Datenbank. Einige wenige (aktuell DRK Visitenkarte, künftig DRK Teamkennwort und DRK AutoDMS) nutzen Datenbanken — selbstverständlich DSGVO-konform auf Hetzner-Servern in Deutschland.</p>
           </div>
           <div class="pillar-card fade-up">
-            <div class="pillar-icon">
-              <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="11" width="18" height="11" rx="2" ry="2"/><path d="M7 11V7a5 5 0 0 1 10 0v4"/></svg>
-            </div>
+            <div class="pillar-number">02</div>
             <div class="pillar-title">Open Source</div>
             <p class="pillar-text">Alle Tools quelloffen auf GitHub. Jeder Verband kann selbst hosten, prüfen und anpassen.</p>
           </div>
           <div class="pillar-card fade-up">
-            <div class="pillar-icon">
-              <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"/></svg>
-            </div>
+            <div class="pillar-number">03</div>
             <div class="pillar-title">Sofort nutzbar</div>
             <p class="pillar-text">Keine Installation, keine Registrierung. Browser öffnen und loslegen — auf jedem Gerät.</p>
           </div>
@@ -1084,66 +1100,26 @@
           <p class="section-description">Neue DRK-Digitaltools in aktiver Entwicklung. Noch nicht live — aber bald.</p>
         </div>
 
-        <div class="roadmap-grid stagger">
-          <div class="roadmap-card fade-up">
-            <div class="roadmap-icon">
-              <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><path d="M14 2v6h6"/></svg>
-            </div>
-            <div>
-              <div class="roadmap-name">
-                DRK Briefbogen
-                <span class="badge badge-dev" style="margin-left:var(--space-2);">Bald</span>
-              </div>
-              <p class="roadmap-desc">Automatisierter DRK-Briefbogen-Generator. Korrekte CI, richtige Absenderfelder.</p>
-            </div>
+        <div class="roadmap-timeline stagger">
+          <div class="roadmap-item fade-up">
+            <div class="roadmap-name">DRK Briefbogen <span class="badge badge-dev" style="margin-left:var(--space-2);">Bald</span></div>
+            <p class="roadmap-desc">Automatisierter DRK-Briefbogen-Generator. Korrekte CI, richtige Absenderfelder.</p>
           </div>
-          <div class="roadmap-card fade-up">
-            <div class="roadmap-icon">
-              <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 2l-2 2m-7.61 7.61a5.5 5.5 0 1 1-7.778 7.778 5.5 5.5 0 0 1 7.777-7.777zm0 0L15.5 7.5m0 0l3 3L22 7l-3-3m-3.5 3.5L19 4"/></svg>
-            </div>
-            <div>
-              <div class="roadmap-name">
-                DRK Teamkennwort
-                <span class="badge badge-dev" style="margin-left:var(--space-2);">In Entwicklung</span>
-              </div>
-              <p class="roadmap-desc">Sicheres Passwort-Management für Teams. Kein externer Anbieter.</p>
-            </div>
+          <div class="roadmap-item fade-up">
+            <div class="roadmap-name">DRK Teamkennwort <span class="badge badge-dev" style="margin-left:var(--space-2);">In Entwicklung</span></div>
+            <p class="roadmap-desc">Sicheres Passwort-Management für Teams. Kein externer Anbieter.</p>
           </div>
-          <div class="roadmap-card fade-up">
-            <div class="roadmap-icon">
-              <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 20h16a2 2 0 0 0 2-2V8a2 2 0 0 0-2-2h-7.93a2 2 0 0 1-1.66-.9l-.82-1.2A2 2 0 0 0 7.93 3H4a2 2 0 0 0-2 2v13c0 1.1.9 2 2 2z"/></svg>
-            </div>
-            <div>
-              <div class="roadmap-name">
-                DRK AutoDMS
-                <span class="badge badge-dev" style="margin-left:var(--space-2);">Geplant</span>
-              </div>
-              <p class="roadmap-desc">Automatisiertes Dokumenten-Management ohne teure DMS-Software.</p>
-            </div>
+          <div class="roadmap-item fade-up">
+            <div class="roadmap-name">DRK AutoDMS <span class="badge badge-dev" style="margin-left:var(--space-2);">Geplant</span></div>
+            <p class="roadmap-desc">Automatisiertes Dokumenten-Management ohne teure DMS-Software.</p>
           </div>
-          <div class="roadmap-card fade-up">
-            <div class="roadmap-icon">
-              <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="4" width="20" height="16" rx="2"/><path d="m22 7-8.97 5.7a1.94 1.94 0 0 1-2.06 0L2 7"/></svg>
-            </div>
-            <div>
-              <div class="roadmap-name">
-                DRK Signatur
-                <span class="badge badge-dev" style="margin-left:var(--space-2);">Geplant</span>
-              </div>
-              <p class="roadmap-desc">E-Mail-Signatur-Generator im einheitlichen DRK-Corporate-Design.</p>
-            </div>
+          <div class="roadmap-item fade-up">
+            <div class="roadmap-name">DRK Signatur <span class="badge badge-dev" style="margin-left:var(--space-2);">Geplant</span></div>
+            <p class="roadmap-desc">E-Mail-Signatur-Generator im einheitlichen DRK-Corporate-Design.</p>
           </div>
-          <div class="roadmap-card fade-up">
-            <div class="roadmap-icon">
-              <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="4" y="4" width="16" height="16" rx="2"/><rect x="9" y="9" width="6" height="6"/><line x1="9" y1="2" x2="9" y2="4"/><line x1="15" y1="2" x2="15" y2="4"/><line x1="9" y1="20" x2="9" y2="22"/><line x1="15" y1="20" x2="15" y2="22"/><line x1="20" y1="9" x2="22" y2="9"/><line x1="20" y1="14" x2="22" y2="14"/><line x1="2" y1="9" x2="4" y2="9"/><line x1="2" y1="14" x2="4" y2="14"/></svg>
-            </div>
-            <div>
-              <div class="roadmap-name">
-                HenryGPT
-                <span class="badge badge-dev" style="margin-left:var(--space-2);">In Entwicklung</span>
-              </div>
-              <p class="roadmap-desc">Intelligenter KI-Assistent speziell für das DRK — benannt nach Henry Dunant, dem Gründer des Roten Kreuzes. DSGVO-konform in eigener Umgebung.</p>
-            </div>
+          <div class="roadmap-item fade-up">
+            <div class="roadmap-name">HenryGPT <span class="badge badge-dev" style="margin-left:var(--space-2);">In Entwicklung</span></div>
+            <p class="roadmap-desc">Intelligenter KI-Assistent speziell für das DRK — benannt nach Henry Dunant, dem Gründer des Roten Kreuzes. DSGVO-konform in eigener Umgebung.</p>
           </div>
         </div>
       </div>
