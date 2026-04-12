@@ -473,49 +473,55 @@ a:focus-visible, button:focus-visible {
   line-height: 1.6;
 }
 
-/* ═══════════════════════════════════════════
-   FOOTER
-   ═══════════════════════════════════════════ */
+/* ── Footer ── */
 .footer {
-  margin-top: auto;
-  border-top: 1px solid var(--border);
-  padding: var(--space-10) 0 var(--space-8);
+  background: var(--drk-blue);
+  color: #fff;
+  padding: 3rem 0 2rem;
 }
 .footer-inner {
   display: flex;
   flex-direction: column;
   align-items: center;
-  gap: var(--space-4);
+  gap: 1rem;
   text-align: center;
 }
+.footer-cross {
+  width: 24px;
+  height: 24px;
+  opacity: 0.15;
+  margin-bottom: 0.5rem;
+}
 .footer-org {
-  font-size: var(--text-xs);
-  font-weight: 700;
-  text-transform: uppercase;
-  letter-spacing: 0.12em;
-  color: var(--drk-blue);
+  font-family: var(--font-display);
+  font-size: 1.125rem;
+  font-weight: 400;
+  color: #fff;
 }
 .footer-kv {
-  font-size: var(--text-xs);
-  color: var(--text-secondary);
+  font-size: 0.75rem;
+  color: rgba(255,255,255,0.5);
+  font-weight: 500;
 }
 .footer-links {
   display: flex;
-  gap: var(--space-4);
-  font-size: var(--text-xs);
-  color: var(--text-muted);
+  gap: 1.5rem;
+  font-size: 0.75rem;
+  color: rgba(255,255,255,0.5);
 }
 .footer-links a {
-  transition: color var(--transition-fast);
+  transition: color 150ms ease;
 }
-.footer-links a:hover { color: var(--text); }
+.footer-links a:hover { color: #fff; }
 .footer-heart {
-  font-size: var(--text-xs);
-  color: var(--text-muted);
+  font-size: 0.6875rem;
+  color: rgba(255,255,255,0.3);
   display: flex;
   align-items: center;
-  gap: var(--space-1);
+  gap: 0.25rem;
+  margin-top: 0.5rem;
 }
-.footer-cross {
-  display: inline-flex;
+.footer-heart svg {
+  width: 12px;
+  height: 12px;
 }
