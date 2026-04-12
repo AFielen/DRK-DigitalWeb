@@ -1,24 +1,3 @@
-/* Instrument Serif — Display/Headlines */
-@font-face {
-  font-family: 'Instrument Serif';
-  src: url('InstrumentSerif-Regular.woff2') format('woff2');
-  font-weight: 400;
-  font-style: normal;
-  font-display: swap;
-}
-@font-face {
-  font-family: 'Instrument Serif';
-  src: url('InstrumentSerif-Italic.woff2') format('woff2');
-  font-weight: 400;
-  font-style: italic;
-  font-display: swap;
-}
-
-/* Onest — Body/UI */
-@font-face {
-  font-family: 'Onest';
-  src: url('Onest-Variable.woff2') format('woff2');
-  font-weight: 100 900;
-  font-style: normal;
-  font-display: swap;
-}
+/* DRK Corporate Design: Helvetica Neue via System-Font-Stack */
+/* Keine @font-face nötig — Helvetica Neue ist auf macOS/iOS vorinstalliert, */
+/* Windows/Android fallen auf Arial/Roboto zurück. */

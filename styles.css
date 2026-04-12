@@ -6,8 +6,8 @@
 /* ── Design Tokens ── */
 :root {
   /* Font Stacks */
-  --font-display: 'Instrument Serif', Georgia, 'Times New Roman', serif;
-  --font-body: 'Onest', system-ui, -apple-system, sans-serif;
+  --font-display: 'Helvetica Neue', Helvetica, Arial, sans-serif;
+  --font-body: 'Helvetica Neue', Helvetica, Arial, sans-serif;
 
   /* DRK Brand Colors */
   --drk: #e60005;
@@ -416,7 +416,7 @@ a:focus-visible, button:focus-visible {
 .content-card h1 {
   font-family: var(--font-display);
   font-size: clamp(1.75rem, 1.5rem + 1.25vw, 2.5rem);
-  font-weight: 400;
+  font-weight: 700;
   color: var(--text); margin-bottom: 2rem;
   letter-spacing: -0.01em; line-height: 1.15;
 }
@@ -424,7 +424,7 @@ a:focus-visible, button:focus-visible {
 .content-section:last-child { margin-bottom: 0; }
 .content-section h2 {
   font-family: var(--font-display);
-  font-size: 1.25rem; font-weight: 400;
+  font-size: 1.25rem; font-weight: 600;
   color: var(--drk-blue); margin-bottom: 0.75rem;
   letter-spacing: -0.01em;
 }
@@ -498,7 +498,7 @@ a:focus-visible, button:focus-visible {
 .footer-org {
   font-family: var(--font-display);
   font-size: 1.125rem;
-  font-weight: 400;
+  font-weight: 700;
   color: #fff;
 }
 .footer-kv {
