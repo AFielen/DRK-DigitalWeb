@@ -374,6 +374,36 @@
       color: #2563eb;
       border: 1px solid #bfdbfe;
     }
+    .badge-service {
+      background: #f5f3ff;
+      color: #6d28d9;
+      border: 1px solid #ddd6fe;
+    }
+
+    /* Wide card (spans both columns of the product grid) */
+    .product-card--wide {
+      grid-column: span 2;
+    }
+    @media (max-width: 680px) {
+      .product-card--wide { grid-column: auto; }
+    }
+
+    /* ═══════════════════════════════════════════
+       IM EINSATZ — Live-Anwendungen des Kreisverbands
+       ═══════════════════════════════════════════ */
+    .einsatz-section {
+      background: var(--surface);
+      border-bottom: 1px solid var(--border-light);
+    }
+    .einsatz-section .platform-card {
+      border-color: var(--border);
+    }
+    .einsatz-section .platform-card::before {
+      background: linear-gradient(90deg, var(--drk), var(--drk-light));
+    }
+    .einsatz-section .platform-card:hover {
+      border-color: var(--border-hover);
+    }
 
     /* ═══════════════════════════════════════════
        PLATFORM SOLUTIONS
@@ -784,6 +814,7 @@
       <nav class="header-nav">
         <a href="#produkte" class="nav-link">Produkte</a>
         <a href="#plattform" class="nav-link">Plattformen</a>
+        <a href="#dienstleistungen" class="nav-link">Dienstleistungen</a>
         <a href="#philosophie" class="nav-link">Philosophie</a>
         <a href="#roadmap" class="nav-link">Roadmap</a>
         <a href="mailto:digitalisierung@drk-aachen.de" class="nav-link">Kontakt</a>
@@ -798,6 +829,7 @@
     <nav class="mobile-nav">
       <a href="#produkte" onclick="this.parentElement.classList.remove('open')">Produkte</a>
       <a href="#plattform" onclick="this.parentElement.classList.remove('open')">Plattformen</a>
+      <a href="#dienstleistungen" onclick="this.parentElement.classList.remove('open')">Dienstleistungen</a>
       <a href="#philosophie" onclick="this.parentElement.classList.remove('open')">Philosophie</a>
       <a href="#roadmap" onclick="this.parentElement.classList.remove('open')">Roadmap</a>
       <a href="mailto:digitalisierung@drk-aachen.de" onclick="this.parentElement.classList.remove('open')">Kontakt</a>
@@ -812,7 +844,7 @@
       <div class="hero-content">
         <div class="hero-badge">
           <span class="hero-badge-dot"></span>
-          6 Open-Source-Tools + 2 Plattform-Lösungen
+          7 Open-Source-Tools · 2 Plattform-Lösungen · Dienstleistungen
         </div>
         <h1>Digitale Werkzeuge<br/>für das <em>Rote Kreuz</em></h1>
         <p class="hero-description">
@@ -830,7 +862,7 @@
         </div>
         <div class="hero-stats">
           <div class="hero-stat">
-            <div class="hero-stat-value" data-count="9">9</div>
+            <div class="hero-stat-value" data-count="11">11</div>
             <div class="hero-stat-label">Live-Produkte</div>
           </div>
           <div class="hero-stat">
@@ -838,7 +870,7 @@
             <div class="hero-stat-label">DSGVO-konform</div>
           </div>
           <div class="hero-stat">
-            <div class="hero-stat-value">6</div>
+            <div class="hero-stat-value">7</div>
             <div class="hero-stat-label">Kostenlose Tools</div>
           </div>
         </div>
@@ -1075,6 +1107,213 @@
       </div>
     </section>
 
+
+    <!-- ═══ IM EINSATZ ═══ -->
+    <section id="einsatz" class="section einsatz-section">
+      <div class="container">
+        <div class="section-header fade-up">
+          <div class="section-label">Im Einsatz</div>
+          <h2 class="section-title">Live beim DRK Aachen</h2>
+          <p class="section-description">Zwei Anwendungen, die im Kreisverband täglich laufen — und die wir als Vorlage für andere DRK-Gliederungen einrichten können.</p>
+        </div>
+
+        <div class="platform-grid stagger">
+
+          <!-- Spendenseite -->
+          <a href="https://spenden.drk-aachen.de" target="_blank" rel="noopener" class="platform-card fade-up">
+            <div class="platform-card-header">
+              <div class="product-icon-wrap" style="background:linear-gradient(135deg,#fef2f2,#fee2e2);color:#dc2626;">
+                <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"/></svg>
+              </div>
+              <span class="badge badge-live">Live</span>
+            </div>
+            <div class="platform-card-name">DRK Spendenseite</div>
+            <p class="platform-card-desc">Online spenden in unter einer Minute — mit Zahlungsdienstleister Mollie, Apple Pay, Kreditkarte und Banking-QR-Code für die klassische Überweisung. Ohne Umweg über Drittplattformen, DSGVO-konform gehostet in Deutschland.</p>
+            <div class="platform-card-meta">
+              <span class="platform-tag">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="5" width="20" height="14" rx="2"/><line x1="2" y1="10" x2="22" y2="10"/></svg>
+                Mollie &amp; Apple Pay
+              </span>
+              <span class="platform-tag">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="3" width="5" height="5" rx="1"/><rect x="16" y="3" width="5" height="5" rx="1"/><rect x="3" y="16" width="5" height="5" rx="1"/><path d="M21 16h-3a2 2 0 0 0-2 2v3"/><path d="M21 21v.01"/><path d="M12 7v3a2 2 0 0 1-2 2H7"/><path d="M3 12h.01"/><path d="M12 3h.01"/><path d="M12 16v.01"/><path d="M16 12h1"/><path d="M21 12v.01"/><path d="M12 21v-1"/></svg>
+                Banking-QR-Code
+              </span>
+            </div>
+            <div class="platform-card-footer">
+              spenden.drk-aachen.de
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+            </div>
+          </a>
+
+          <!-- Veranstaltungen -->
+          <a href="https://drk-dabei.de" target="_blank" rel="noopener" class="platform-card fade-up">
+            <div class="platform-card-header">
+              <div class="product-icon-wrap" style="background:linear-gradient(135deg,#fdf2f8,#fce7f3);color:#db2777;">
+                <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="4" width="18" height="18" rx="2" ry="2"/><line x1="16" y1="2" x2="16" y2="6"/><line x1="8" y1="2" x2="8" y2="6"/><line x1="3" y1="10" x2="21" y2="10"/><path d="M8 14h.01"/><path d="M12 14h.01"/><path d="M16 14h.01"/><path d="M8 18h.01"/><path d="M12 18h.01"/><path d="M16 18h.01"/></svg>
+              </div>
+              <span class="badge badge-live">Live</span>
+            </div>
+            <div class="platform-card-name">DRK dabei — Veranstaltungen</div>
+            <p class="platform-card-desc">Die Veranstaltungsplattform des Kreisverbands: Termine veröffentlichen, Anmeldungen online entgegennehmen und Teilnehmende verwalten — von der Fortbildung bis zum Ehrenamts-Event.</p>
+            <div class="platform-card-meta">
+              <span class="platform-tag">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="4" width="18" height="18" rx="2" ry="2"/><line x1="16" y1="2" x2="16" y2="6"/><line x1="8" y1="2" x2="8" y2="6"/><line x1="3" y1="10" x2="21" y2="10"/></svg>
+                Veranstaltungen
+              </span>
+              <span class="platform-tag">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M16 21v-2a4 4 0 0 0-4-4H6a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M22 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg>
+                Online-Anmeldung
+              </span>
+            </div>
+            <div class="platform-card-footer">
+              drk-dabei.de
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+            </div>
+          </a>
+
+        </div>
+      </div>
+    </section>
+
+    <!-- ═══ DIENSTLEISTUNGEN & PRODUKTE ═══ -->
+    <section id="dienstleistungen" class="section">
+      <div class="container">
+        <div class="section-header fade-up">
+          <div class="section-label">Dienstleistungen &amp; Produkte</div>
+          <h2 class="section-title">Systeme, die wir für euch einrichten</h2>
+          <p class="section-description">Nicht jede Lösung eignet sich für Self-Service. Diese Systeme richten wir für DRK-Gliederungen ein, konfigurieren sie auf euren Bedarf und übergeben sie betriebsbereit — auf Wunsch mit Schulung und laufendem Betrieb.</p>
+        </div>
+
+        <div class="products-grid stagger">
+
+          <!-- Ticketing-System -->
+          <a href="mailto:digitalisierung@drk-aachen.de?subject=Anfrage%20Ticketing-System" class="product-card fade-up">
+            <div class="product-card-header">
+              <div class="product-icon-wrap" style="background:linear-gradient(135deg,#eff6ff,#dbeafe);color:#2563eb;">
+                <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M2 9a3 3 0 0 1 0 6v2a2 2 0 0 0 2 2h16a2 2 0 0 0 2-2v-2a3 3 0 0 1 0-6V7a2 2 0 0 0-2-2H4a2 2 0 0 0-2 2Z"/><path d="M13 5v2"/><path d="M13 17v2"/><path d="M13 11v2"/></svg>
+              </div>
+              <span class="badge badge-service">Dienstleistung</span>
+            </div>
+            <div class="product-card-name">Ticketing-System</div>
+            <p class="product-card-desc">Helpdesk und Ticketsystem auf Basis von Zammad — für IT-Support, Verwaltung oder Bürgeranfragen. Wir richten Postfächer, Gruppen, Workflows und Formulare ein.</p>
+            <div class="product-card-footer">
+              Anfragen
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+            </div>
+          </a>
+
+          <!-- CRM -->
+          <a href="mailto:digitalisierung@drk-aachen.de?subject=Anfrage%20CRM" class="product-card fade-up">
+            <div class="product-card-header">
+              <div class="product-icon-wrap" style="background:linear-gradient(135deg,#f0fdf4,#dcfce7);color:#16a34a;">
+                <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M16 21v-2a4 4 0 0 0-4-4H6a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M22 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg>
+              </div>
+              <span class="badge badge-service">Dienstleistung</span>
+            </div>
+            <div class="product-card-name">CRM</div>
+            <p class="product-card-desc">Kontakte, Mitglieder, Spender und Partner an einem Ort — Kundenbeziehungsmanagement, das wir auf die Strukturen eures Verbands zuschneiden und schlüsselfertig übergeben.</p>
+            <div class="product-card-footer">
+              Anfragen
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+            </div>
+          </a>
+
+          <!-- CMS &amp; Webauftritt -->
+          <a href="mailto:digitalisierung@drk-aachen.de?subject=Anfrage%20CMS" class="product-card fade-up">
+            <div class="product-card-header">
+              <div class="product-icon-wrap" style="background:linear-gradient(135deg,#fff7ed,#fed7aa);color:#ea580c;">
+                <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect width="18" height="18" x="3" y="3" rx="2"/><path d="M3 9h18"/><path d="M9 21V9"/></svg>
+              </div>
+              <span class="badge badge-service">Dienstleistung</span>
+            </div>
+            <div class="product-card-name">CMS &amp; Webauftritt</div>
+            <p class="product-card-desc">Content-Management-System für den Webauftritt eurer Gliederung — im DRK-Corporate-Design, ohne Tracker, ohne externe CDN. Einrichtung, Migration und Schulung inklusive.</p>
+            <div class="product-card-footer">
+              Anfragen
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+            </div>
+          </a>
+
+          <!-- Fortbildungsverwaltung -->
+          <a href="mailto:digitalisierung@drk-aachen.de?subject=Anfrage%20Fortbildungsverwaltung" class="product-card fade-up">
+            <div class="product-card-header">
+              <div class="product-icon-wrap" style="background:linear-gradient(135deg,#eef2ff,#e0e7ff);color:#4f46e5;">
+                <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21.42 10.922a1 1 0 0 0-.019-1.838L12.83 5.18a2 2 0 0 0-1.66 0L2.6 9.08a1 1 0 0 0 0 1.832l8.57 3.908a2 2 0 0 0 1.66 0z"/><path d="M22 10v6"/><path d="M6 12.5V16a6 3 0 0 0 12 0v-3.5"/></svg>
+              </div>
+              <span class="badge badge-service">Dienstleistung</span>
+            </div>
+            <div class="product-card-name">Fortbildungsverwaltung</div>
+            <p class="product-card-desc">Kurse, Termine, Teilnehmende und Nachweise digital verwalten — von der Anmeldung bis zum Zertifikat. Für Bildungswerke, Rettungsdienst und Ehrenamt.</p>
+            <div class="product-card-footer">
+              Anfragen
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+            </div>
+          </a>
+
+          <!-- Projektmanagement -->
+          <a href="mailto:digitalisierung@drk-aachen.de?subject=Anfrage%20Projektmanagement%20(Vikunja)" class="product-card fade-up">
+            <div class="product-card-header">
+              <div class="product-icon-wrap" style="background:linear-gradient(135deg,#f0fdfa,#ccfbf1);color:#0d9488;">
+                <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect width="8" height="4" x="8" y="2" rx="1" ry="1"/><path d="M16 4h2a2 2 0 0 1 2 2v14a2 2 0 0 1-2 2H6a2 2 0 0 1-2-2V6a2 2 0 0 1 2-2h2"/><path d="m9 14 2 2 4-4"/></svg>
+              </div>
+              <span class="badge badge-service">Dienstleistung</span>
+            </div>
+            <div class="product-card-name">Projektmanagement</div>
+            <p class="product-card-desc">Aufgaben, Projekte und Kanban-Boards auf Basis von Vikunja — Open Source, selbst gehostet in Deutschland. Wir installieren, konfigurieren und binden eure Teams an.</p>
+            <div class="product-card-footer">
+              Anfragen
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+            </div>
+          </a>
+
+          <!-- Lernplattform -->
+          <a href="mailto:digitalisierung@drk-aachen.de?subject=Anfrage%20Lernplattform" class="product-card fade-up">
+            <div class="product-card-header">
+              <div class="product-icon-wrap" style="background:linear-gradient(135deg,#f5f3ff,#ede9fe);color:#7c3aed;">
+                <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M2 3h6a4 4 0 0 1 4 4v14a3 3 0 0 0-3-3H2z"/><path d="M22 3h-6a4 4 0 0 0-4 4v14a3 3 0 0 1 3-3h7z"/></svg>
+              </div>
+              <span class="badge badge-service">Dienstleistung</span>
+            </div>
+            <div class="product-card-name">Lernplattform</div>
+            <p class="product-card-desc">Lernplattform für Vertrieb, Verkauf und Management von Kursen — Erste-Hilfe-Angebote online buchbar machen, Inhalte bereitstellen, Teilnehmende und Zahlungen verwalten.</p>
+            <div class="product-card-footer">
+              Anfragen
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+            </div>
+          </a>
+
+          <!-- Spendenseite -->
+          <a href="mailto:digitalisierung@drk-aachen.de?subject=Anfrage%20Spendenseite" class="product-card fade-up product-card--wide">
+            <div class="product-card-header">
+              <div class="product-icon-wrap" style="background:linear-gradient(135deg,#fef2f2,#fee2e2);color:#dc2626;">
+                <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"/></svg>
+              </div>
+              <span class="badge badge-service">Dienstleistung</span>
+            </div>
+            <div class="product-card-name">Spendenseite</div>
+            <p class="product-card-desc">Eine eigene Online-Spendenseite für eure Gliederung — wie <strong>spenden.drk-aachen.de</strong>: Zahlungsdienstleister Mollie, Apple Pay, Kreditkarte und Banking-QR-Code, Spendenzwecke frei konfigurierbar, gehostet in Deutschland. Wir richten Domain, Zahlungsanbindung und Design ein und übergeben betriebsbereit.</p>
+            <div class="platform-card-meta">
+              <span class="platform-tag"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="5" width="20" height="14" rx="2"/><line x1="2" y1="10" x2="22" y2="10"/></svg>Mollie</span>
+              <span class="platform-tag"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="5" y="2" width="14" height="20" rx="2"/><path d="M12 18h.01"/></svg>Apple Pay</span>
+              <span class="platform-tag"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="5" width="20" height="14" rx="2"/><line x1="2" y1="10" x2="22" y2="10"/></svg>Kreditkarte</span>
+              <span class="platform-tag"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="3" width="5" height="5" rx="1"/><rect x="16" y="3" width="5" height="5" rx="1"/><rect x="3" y="16" width="5" height="5" rx="1"/><path d="M21 16h-3a2 2 0 0 0-2 2v3"/><path d="M12 7v3a2 2 0 0 1-2 2H7"/></svg>Banking-QR-Code</span>
+              <span class="platform-tag"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>Hosting in Deutschland</span>
+            </div>
+            <div class="product-card-footer">
+              Spendenseite anfragen
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+            </div>
+          </a>
+
+        </div>
+
+        <div class="platform-note fade-up">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><line x1="12" y1="16" x2="12" y2="12"/><line x1="12" y1="8" x2="12.01" y2="8"/></svg>
+          <span>Einrichtung und Betrieb erfolgen als Dienstleistung des DRK Kreisverband StädteRegion Aachen e.V. — nach Aufwand oder als Paket. Hosting auf Hetzner-Servern in Deutschland, DSGVO-konform, ohne US-Cloud. Einfach anfragen, wir melden uns.</span>
+        </div>
+      </div>
+    </section>
+
     <!-- ═══ PHILOSOPHIE ═══ -->
     <section id="philosophie" class="section" style="background:var(--bg-warm);">
       <div class="container">
@@ -1125,6 +1364,10 @@
         </div>
 
         <div class="roadmap-timeline stagger">
+          <div class="roadmap-item fade-up">
+            <div class="roadmap-name">Digitale Meldung besonderer Vorkommnisse (MbV) <span class="badge badge-dev" style="margin-left:var(--space-2);">In Entwicklung</span></div>
+            <p class="roadmap-desc">Besondere Vorkommnisse in Rettungsdienst, Pflege, Kita und Einrichtungen digital melden — strukturiert erfassen, an die richtigen Stellen weiterleiten und auswerten. Statt Papierformular und Fax.</p>
+          </div>
           <div class="roadmap-item fade-up">
             <div class="roadmap-name">DRK Briefbogen <span class="badge badge-dev" style="margin-left:var(--space-2);">Bald</span></div>
             <p class="roadmap-desc">Automatisierter DRK-Briefbogen-Generator. Korrekte CI, richtige Absenderfelder.</p>
