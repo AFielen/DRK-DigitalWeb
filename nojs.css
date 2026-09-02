@@ -1,0 +1,9 @@
+/* Fallback ohne JavaScript (eingebunden per <noscript>) */
+/* 1. Per Scroll eingeblendete Elemente sofort sichtbar */
+.fade-up { opacity: 1 !important; transform: none !important; }
+/* 2. Navigation ohne Menü-Script: Mobilmenü statisch unter dem Header anzeigen, Header nicht mehr sticky */
+@media (max-width: 900px) {
+  .header { position: static; }
+  .mobile-menu-btn { display: none !important; }
+  .mobile-nav { display: flex; flex-direction: column; gap: 0.5rem; position: static; }
+}

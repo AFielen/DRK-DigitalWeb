@@ -4,3 +4,4 @@
 Contact: mailto:digitalisierung@drk-aachen.de
 Expires: 2027-04-14T00:00:00.000Z
 Preferred-Languages: de, en
+Canonical: https://drk-digital.io/.well-known/security.txt
