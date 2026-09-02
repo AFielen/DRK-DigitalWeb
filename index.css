@@ -300,7 +300,7 @@
 }
 .badge-dev {
   background: var(--warning-bg);
-  color: #92400e;
+  color: var(--warning);
   border: 1px solid var(--warning-border);
 }
 .badge-license {
@@ -591,6 +591,7 @@
   grid-template-columns: repeat(3, 1fr);
   gap: var(--space-4);
 }
+/* 768px statt 640px: drei Säulen wären zwischen 641 und 768px zu schmal (unter 200px je Spalte) */
 @media (max-width: 768px) {
   .pillars-grid { grid-template-columns: 1fr; }
 }

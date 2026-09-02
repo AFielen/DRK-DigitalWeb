@@ -36,6 +36,19 @@
     if (mq.addEventListener) mq.addEventListener('change', onChange); else if (mq.addListener) mq.addListener(onChange);
   }
 
+  /* Druck: FAQ-Antworten aufklappen (Firefox/Safari rendern geschlossene <details> nicht) */
+  var faq = document.querySelectorAll('details.faq-item');
+  if (faq.length) {
+    var wasOpen = [];
+    window.addEventListener('beforeprint', function () {
+      wasOpen = [];
+      faq.forEach(function (d, k) { wasOpen[k] = d.open; d.open = true; });
+    });
+    window.addEventListener('afterprint', function () {
+      faq.forEach(function (d, k) { d.open = !!wasOpen[k]; });
+    });
+  }
+
   /* Scroll-Einblendung (.fade-up). Nach der Einblendung werden die Klassen entfernt,
      damit Hover-Effekte der Karten wieder ihre eigenen Transitions nutzen. */
   var faders = document.querySelectorAll('.fade-up');

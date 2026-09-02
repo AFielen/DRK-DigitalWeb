@@ -8,17 +8,17 @@ Open Source · Kostenlos · DSGVO-konform
 
 ## Was ist das?
 
-Die Website [drk-digital.io](https://drk-digital.io) präsentiert die Open-Source-Digitalisierungstools des DRK-Kreisverband Städteregion Aachen e.V. — ein One-Pager mit Produktübersicht, Dienstleistungen, Philosophie und Roadmap.
+Die Website [drk-digital.io](https://drk-digital.io) präsentiert die Open-Source-Digitalisierungstools des DRK-Kreisverbands Städteregion Aachen e.V. — ein One-Pager mit Produktübersicht, Dienstleistungen, Philosophie und Roadmap.
 
 ## ✨ Features
 
-* **Statische Website** — Reines HTML/CSS plus ein kleines Vanilla-JS (`main.js`: Mobile-Menü, Header-Schatten); kein Framework, kein Build-Step
-* **Strikte Content-Security-Policy** — Keine Inline-Styles, keine `style`-Attribute, keine Inline-Scripts; alle Styles liegen in `styles.css`/`index.css`, das Script in `main.js`
+* **Statische Website** — Reines HTML/CSS plus ein kleines Vanilla-JS (`main.js`: Mobile-Menü, Header-Schatten, Scroll-Einblendung); kein Framework, kein Build-Step. Ohne JavaScript greift `nojs.css` (alles sichtbar, Navigation statisch)
+* **Strikte Content-Security-Policy** — Keine Inline-Styles, keine `style`-Attribute, keine Inline-Scripts; alle Styles liegen in `styles.css`/`index.css`/`nojs.css`, das Script in `main.js`
 * **Security-Header** — HSTS, CSP, `X-Content-Type-Options`, `Referrer-Policy`, `Permissions-Policy`, `X-Frame-Options` (siehe Caddyfile)
 * **Eigene 404-Seite** — `404.html` im Design der Website, Statuscode 404 bleibt erhalten
 * **SEO-Grundausstattung** — `robots.txt`, `sitemap.xml`, Canonical-Links, Open Graph mit `og-image.png`, Web-Manifest
 * **security.txt** — Sicherheitskontakt nach RFC 9116 unter `/.well-known/security.txt`
-* **NIS2-Design-System** — Einheitliches DRK-Designsystem mit CSS-Variablen
+* **DRK-Design-System** — Einheitliches DRK-Designsystem mit CSS-Variablen
 * **Zero External Dependencies** — Keine Google Fonts, keine CDNs, keine Tracker
 * **DSGVO-konform** — Keine Cookies, kein Tracking, Hosting bei Hetzner (Deutschland)
 * **Responsive** — Optimiert für Mobile, Tablet und Desktop
@@ -108,6 +108,10 @@ drk-digital.io {
 	@assets path *.png *.svg *.ico *.jpg *.jpeg *.webp *.webmanifest
 	header @assets Cache-Control "public, max-age=2592000"
 
+	# robots.txt, sitemap.xml, security.txt: 1 Stunde
+	@text path *.txt *.xml
+	header @text Cache-Control "public, max-age=3600"
+
 	# ── Fehlerseiten ──
 	# 404 → /404.html. file_server übernimmt im Fehlerkontext den Statuscode
 	# des Fehlers, die Antwort bleibt also ein echter 404.
@@ -153,7 +157,7 @@ Was die Vorlage abdeckt:
 
 ```bash
 # Alle Assets erreichbar? (erwartet: jeweils 200)
-for p in / /styles.css /index.css /main.js /.well-known/security.txt /robots.txt /sitemap.xml /site.webmanifest /og-image.png; do
+for p in / /styles.css /index.css /nojs.css /main.js /.well-known/security.txt /robots.txt /sitemap.xml /site.webmanifest /og-image.png; do
   printf '%-32s ' "$p"; curl -s -o /dev/null -w '%{http_code}\n' "https://drk-digital.io$p"
 done
 
@@ -200,7 +204,8 @@ Hinweis: Lokale Server setzen keine Security-Header. Wer die CSP lokal testen wi
 DRK-DigitalWeb/
 ├── index.html              # Hauptseite (One-Pager)
 ├── index.css               # Styles nur für die Hauptseite
-├── main.js                 # Mobile-Menü, Header-Schatten (alle Seiten)
+├── nojs.css                # Fallback ohne JavaScript (per <noscript>)
+├── main.js                 # Mobile-Menü, Header-Schatten, Scroll-Einblendung (alle Seiten)
 ├── styles.css              # Gemeinsames Stylesheet (Design Tokens, Header, Footer, Content)
 ├── impressum.html          # Impressum
 ├── datenschutz.html        # Datenschutzerklärung (DSGVO)
