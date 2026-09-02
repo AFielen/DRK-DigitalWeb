@@ -8,7 +8,7 @@ Open Source · Kostenlos · DSGVO-konform
 
 ## Was ist das?
 
-Die Website [drk-digital.io](https://drk-digital.io) präsentiert die Open-Source-Digitalisierungstools des DRK Kreisverband StädteRegion Aachen e.V. — ein One-Pager mit Produktübersicht, Dienstleistungen, Philosophie und Roadmap.
+Die Website [drk-digital.io](https://drk-digital.io) präsentiert die Open-Source-Digitalisierungstools des DRK-Kreisverband Städteregion Aachen e.V. — ein One-Pager mit Produktübersicht, Dienstleistungen, Philosophie und Roadmap.
 
 ## ✨ Features
 
@@ -250,7 +250,7 @@ MIT — Frei verwendbar für alle DRK-Gliederungen und darüber hinaus.
 
 ## 🏥 Über
 
-Ein Projekt des [DRK Kreisverband StädteRegion Aachen e.V.](https://www.drk-aachen.de/)
+Ein Projekt des [DRK-Kreisverband Städteregion Aachen e.V.](https://www.drk-aachen.de/)
 
 ---
 
