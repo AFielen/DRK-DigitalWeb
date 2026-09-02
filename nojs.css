@@ -1,0 +1,2 @@
+/* Fallback ohne JavaScript: alle per Scroll eingeblendeten Elemente sofort sichtbar */
+.fade-up { opacity: 1 !important; transform: none !important; }

@@ -1,0 +1,18 @@
+# Betriebssystem
+.DS_Store
+Thumbs.db
+
+# Logs
+*.log
+
+# Lokales Tooling (falls genutzt)
+node_modules/
+
+# Umgebungsvariablen / Zugangsdaten
+.env
+
+# Editoren
+.idea/
+.vscode/*
+!.vscode/settings.json
+*.swp
